@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager with Sidebar</title>
+    <link rel="stylesheet" href="{% static 'task1.css' %}">
+</head>
+
+<body>
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://th.bing.com/th?id=OIP.CcqgfHTm2gKCfHD2945qAwAAAA&w=150&h=150&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+                alt="Logo" style="float: left; height: 75px; width: 75px; margin-top: 15px; margin-left: 25px;">
+            <h1><i>Welcome to Sathi</i></h1>
+            <p><i>Manage your time according to your tasks.</i></p>
+        </div>
+
+        <!-- Task Input Form -->
+        <div id="task-form">
+            <form method="POST" action="{% url 'task_page' %}">
+                {% csrf_token %}
+                <input type="text" name="title" id="task-input" placeholder="Enter your task" required>
+                <input type="datetime-local" name="start_alarm" id="start-alarm" placeholder="Start Alarm" required>
+                <input type="datetime-local" name="end_alarm" id="end-alarm" placeholder="End Alarm" required>
+                <button type="submit" id="add-task-btn">Add Task</button>
+            </form>
+        </div>
+
+        <!-- Task Count -->
+        <div id="task-count">Total Tasks: {{ tasks|length }}</div>
+
+        <!-- Task List -->
+        <div id="task-list">
+            {% for task in tasks %}
+            <div class="task-item">
+                <form method="POST" action="{% url 'update-task' task.id %}" class="update-form">
+                    {% csrf_token %}
+                    <label for="status">Status:</label>
+                    <select name="status" required>
+                        <option value="Pending" {% if task.status == "Pending" %}selected{% endif %}>Pending</option>
+                        <option value="Completed" {% if task.status == "Completed" %}selected{% endif %}>Completed</option>
+                        <option value="In Progress" {% if task.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                    </select>
+                    <input type="text" name="title" value="{{ task.title }}" required>
+                    <input type="datetime-local" name="start_alarm" value="{{ task.start_time|date:'Y-m-d\\TH:i' }}" required>
+                    <input type="datetime-local" name="end_alarm" value="{{ task.end_time|date:'Y-m-d\\TH:i' }}" required>
+                    <button type="submit">Update</button>
+                </form>
+
+                <form method="POST" action="{% url 'delete-task' task.id %}" class="delete-form">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this task?');">Delete</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Audio for Alarm -->
+        <audio id="alarm-sound" src="{% static 'alarm-clock.mp3' %}" preload="auto"></audio>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="{% static 'task1.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signin Page</title>
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+  <style>
+    /* Add your CSS here */
+  </style>
+</head>
+<body>
+
+  <div class="transparent-box">
+    <h2>Login</h2>
+    <p>To-Do-List</p>
+
+    <form action="{% url 'login_page' %}" method="post">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <input type="submit" value="Login">
+
+      {% if error %}
+      <p class="error-message">{{ error }}</p>
+      {% endif %}
+    </form>
+
+    <div class="links">
+      <a href="{% url 'forgot_password_page' %}">Forgot Password?</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* Body and container styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e7f9fd;
+}
+
+.header {
+    text-align: center;
+    background-color: #f0a5a5;
+    color: rgb(10, 9, 9);
+    padding: 20px;
+    margin-left: 5px;
+}
+
+.sidebar-header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: right;
+    
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: rgb(247, 243, 243);
+    border: none;
+    cursor: pointer;
+    margin: 60px;
+}
+
+.logout-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Content styling */
+.content {
+    margin-left: 20px;
+}
+
+#task-form {
+    margin: 50px auto;
+    text-align: center;
+}
+
+#task-form input {
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+}
+
+#task-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#task-form button:hover {
+    background-color: #45a049;
+}
+
+/* Task count */
+#task-count {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Task list styling */
+#task-list {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightcoral;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.task-container.completed {
+    background-color: lightgreen;
+}
+
+.task-container span {
+    flex: 1;
+    margin-right: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #81a38e;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Individual Task Item Styles */
+.task-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.task-item:last-child {
+    border-bottom: none; /* Remove bottom border for last item */
+}
+
+/* Update Form Styles */
+.update-form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.update-form input[type="text"],
+.update-form input[type="datetime-local"],
+.update-form select {
+    margin-bottom: 10px; /* Space between form elements */
+}
+
+/* Button Styles */
+.update-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.update-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Form Styles */
+.delete-form button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-form button:hover {
+    background-color: #c82333;
+}
